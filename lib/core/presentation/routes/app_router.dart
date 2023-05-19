@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:repo_viewer/auth/presentation/sing_in_page.dart';
 import 'package:repo_viewer/splash/presentation/splash_page.dart';
-import 'package:repo_viewer/starred_repos/presentation/starred_repos_page.dart';
 
 import '../../../auth/presentation/authorization_page.dart';
+import '../../../github/repos/starred_repos/presentation/starred_repos_page.dart';
 
 part 'app_router.gr.dart';
 

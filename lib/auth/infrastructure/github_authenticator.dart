@@ -24,8 +24,8 @@ class GitHubAuthenticator {
   final Dio _dio;
   final logger = Logger();
 
-  static const clientId = '';
-  static const clientSecret = '';
+  static const clientId = '7163eedd72f41cef72a4';
+  static const clientSecret = '807c7916c889d6784a86ea5d9b0e20156be1153b';
   static const scopes = ['read:user', 'repo'];
 
   static final authEndpoint =
@@ -90,13 +90,12 @@ class GitHubAuthenticator {
   }
 
   Future<Either<AuthFailure, Unit>> sighOut() async {
-    final accessToken =
-        await _credentialsStorage.read().then((creds) => creds?.accessToken);
-    final encodedToBase64 = stringToBase64.encode('$clientId:$clientSecret');
-
     try {
+      final accessToken =
+      await _credentialsStorage.read().then((creds) => creds?.accessToken);
+      final encodedToBase64 = stringToBase64.encode('$clientId:$clientSecret');
       try {
-        _dio.deleteUri(revocationEndpoint,
+        await _dio.deleteUri(revocationEndpoint,
             data: {
               'access_token': accessToken,
             },
@@ -112,6 +111,16 @@ class GitHubAuthenticator {
           rethrow;
         }
       }
+      // await _credentialsStorage.clear();
+      // return right(unit);
+      return clearCredentialsStorage();
+    } on PlatformException {
+      return left(const AuthFailure.storage());
+    }
+  }
+
+  Future<Either<AuthFailure, Unit>> clearCredentialsStorage() async {
+    try {
       await _credentialsStorage.clear();
       return right(unit);
     } on PlatformException {

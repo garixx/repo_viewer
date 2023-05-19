@@ -15,12 +15,6 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    StarredReposRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const StarredReposPage(),
-      );
-    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -45,21 +39,13 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SignInPage(),
       );
     },
+    StarredReposRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StarredReposPage(),
+      );
+    },
   };
-}
-
-/// generated route for
-/// [StarredReposPage]
-class StarredReposRoute extends PageRouteInfo<void> {
-  const StarredReposRoute({List<PageRouteInfo>? children})
-      : super(
-          StarredReposRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'StarredReposRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -130,6 +116,20 @@ class SignInRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SignInRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StarredReposPage]
+class StarredReposRoute extends PageRouteInfo<void> {
+  const StarredReposRoute({List<PageRouteInfo>? children})
+      : super(
+          StarredReposRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StarredReposRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
