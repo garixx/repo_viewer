@@ -91,8 +91,7 @@ class GitHubAuthenticator {
 
   Future<Either<AuthFailure, Unit>> sighOut() async {
     try {
-      final accessToken =
-      await _credentialsStorage.read().then((creds) => creds?.accessToken);
+      final accessToken = await _credentialsStorage.read().then((creds) => creds?.accessToken);
       final encodedToBase64 = stringToBase64.encode('$clientId:$clientSecret');
       try {
         await _dio.deleteUri(revocationEndpoint,

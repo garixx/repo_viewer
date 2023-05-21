@@ -45,6 +45,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const StarredReposPage(),
       );
     },
+    SearchedReposRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchedReposRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SearchedReposPage(
+          key: args.key,
+          searchTerm: args.searchTerm,
+        ),
+      );
+    },
+    RepoDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RepoDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RepoDetailPage(
+          key: args.key,
+          repo: args.repo,
+        ),
+      );
+    },
   };
 }
 
@@ -132,4 +152,80 @@ class StarredReposRoute extends PageRouteInfo<void> {
   static const String name = 'StarredReposRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SearchedReposPage]
+class SearchedReposRoute extends PageRouteInfo<SearchedReposRouteArgs> {
+  SearchedReposRoute({
+    Key? key,
+    required String searchTerm,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SearchedReposRoute.name,
+          args: SearchedReposRouteArgs(
+            key: key,
+            searchTerm: searchTerm,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchedReposRoute';
+
+  static const PageInfo<SearchedReposRouteArgs> page =
+      PageInfo<SearchedReposRouteArgs>(name);
+}
+
+class SearchedReposRouteArgs {
+  const SearchedReposRouteArgs({
+    this.key,
+    required this.searchTerm,
+  });
+
+  final Key? key;
+
+  final String searchTerm;
+
+  @override
+  String toString() {
+    return 'SearchedReposRouteArgs{key: $key, searchTerm: $searchTerm}';
+  }
+}
+
+/// generated route for
+/// [RepoDetailPage]
+class RepoDetailRoute extends PageRouteInfo<RepoDetailRouteArgs> {
+  RepoDetailRoute({
+    Key? key,
+    required GithubRepo repo,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RepoDetailRoute.name,
+          args: RepoDetailRouteArgs(
+            key: key,
+            repo: repo,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RepoDetailRoute';
+
+  static const PageInfo<RepoDetailRouteArgs> page =
+      PageInfo<RepoDetailRouteArgs>(name);
+}
+
+class RepoDetailRouteArgs {
+  const RepoDetailRouteArgs({
+    this.key,
+    required this.repo,
+  });
+
+  final Key? key;
+
+  final GithubRepo repo;
+
+  @override
+  String toString() {
+    return 'RepoDetailRouteArgs{key: $key, repo: $repo}';
+  }
 }

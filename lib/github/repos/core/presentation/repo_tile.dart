@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:repo_viewer/github/core/domain/github_repo.dart';
+
+import '../../../../core/presentation/routes/app_router.dart';
 
 class RepoTile extends StatelessWidget {
   final GithubRepo repo;
@@ -19,9 +22,12 @@ class RepoTile extends StatelessWidget {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
-      leading: CircleAvatar(
-        backgroundImage: CachedNetworkImageProvider(repo.owner.avatarUrlSmall),
-        backgroundColor: Colors.transparent,
+      leading: Hero(
+        tag: repo.fullName,
+        child: CircleAvatar(
+          backgroundImage: CachedNetworkImageProvider(repo.owner.avatarUrlSmall),
+          backgroundColor: Colors.transparent,
+        ),
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +40,7 @@ class RepoTile extends StatelessWidget {
         ],
       ),
       onTap: () {
-        //TODO:open details screen
+        AutoRouter.of(context).push(RepoDetailRoute(repo: repo));
       },
     );
   }
